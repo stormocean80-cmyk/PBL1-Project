@@ -7,16 +7,17 @@ using namespace std;
 class Person{
     private:
         string Name;
-        string gender;
+        string Gender;
         string Phonenumber;
         string Subject;
         string SubjLevel;
+        string Time;
         public:
-        Person (string Name, string gender, string Phonenumber, string Subject, string SubjectLevel){
-            this->Name=Name;
-            this->gender=gender;
-            this->Phonenumber=Phonenumber;
-            this->Subject=Subject;
-            this->SubjLevel=SubjectLevel;};
-            string getName(){return Name;};
-        };
+        Person (string Name, string Gender, string Phonenumber, string Subject, string SubjectLevel, string Time){
+            this -> Name = Name;
+            this -> Gender = Gender;
+            this -> Phonenumber = Phonenumber;
+            this ->Subject = Subject;
+            this ->SubjLevel = SubjectLevel;
+            this ->Time = Time;};
+};

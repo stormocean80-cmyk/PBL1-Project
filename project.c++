@@ -18,4 +18,5 @@ class Person{
             this->Phonenumber=Phonenumber;
             this->Subject=Subject;
             this->SubjLevel=SubjectLevel;};
+            string getName(){return Name;};
         };

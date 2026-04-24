@@ -47,6 +47,12 @@ class Person{
         }
         
 };
+class Matchingsystem {
+    private:
+        vector<Person> student;
+    public:
+};
 int main(){
     cout << "PBL 1 Project";
+
 }

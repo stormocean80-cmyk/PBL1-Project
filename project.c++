@@ -48,5 +48,5 @@ class Person{
         
 };
 int main(){
-    cout << "hello";
+    cout << "PBL 1 Project";
 }

@@ -8,22 +8,25 @@ class Person{
     private:
         string Name;
         string Gender;
-        string Phonenumber;
+        string ID;
+        string Major;
         string Subject;
         string SubjLevel;
         string Time;
         public:
-        Person (string Name, string Gender, string Phonenumber, string Subject, string SubjectLevel, string Time){
+        Person (string Name, string Gender, string ID, string Major, string Subject, string SubjectLevel, string Time){
             this -> Name = Name;
             this -> Gender = Gender;
-            this -> Phonenumber = Phonenumber;
+            this -> ID = ID;
+            this -> Major = Major;
             this ->Subject = Subject;
             this ->SubjLevel = SubjectLevel;
             this ->Time = Time;
         };
         string getName() const{ return Name; }
         string getGender() const{ return Gender; }
-        string getPhonenumber() const{ return Phonenumber; }
+        string getID() const{ return ID; }
+        string getMajor() const{ return Major; }
         string getSubject() const{ return Subject; }
         string getSubjLevel() const{ return SubjLevel; }
         string getTime() const{ return Time; }
@@ -33,8 +36,11 @@ class Person{
         void setGender(const string Gender){
             this -> Gender = Gender;
         }
-        void setPhonenumber(const string Phonenumber){
-            this -> Phonenumber = Phonenumber;
+        void setID(const string ID){
+            this -> ID = ID;
+        }
+        void setMajor(const string Major){
+            this -> Major = Major;
         }
         void setSubject(const string Subject){
             this -> Subject = Subject;
@@ -54,5 +60,4 @@ class Matchingsystem {
 };
 int main(){
     cout << "PBL 1 Project";
-
 }

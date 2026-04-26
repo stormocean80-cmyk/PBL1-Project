@@ -7,37 +7,22 @@ using namespace std;
 class Student{
     private:
         string Name;
-        string Gender;
         string ID;
         string Major;
         string Subject;
         string Level;
         string Goal;
-        string Time;
         public:
-        Student(string Name, string Gender, string ID, string Major, string Subject, string Level, string Goal, string Time){
-            this -> Name = Name;
-            this -> Gender = Gender;
-            this -> ID = ID;
-            this -> Major = Major;
-            this -> Subject = Subject;
-            this -> Level = Level;
-            this -> Goal = Goal;
-            this -> Time = Time;
-        };
+        Student(string Name, string ID, string Major, string Subject, string Level, string Goal)
+        :Name(Name), ID(ID), Major(Major), Subject(Subject), Level(Level), Goal(Goal){};
         string getName() const{ return Name; }
-        string getGender() const{ return Gender; }
         string getID() const{ return ID; }
         string getMajor() const{ return Major; }
         string getSubject() const{ return Subject; }
         string getLevel() const{ return Level; }
         string getGoal() const{ return Goal; }
-        string getTime() const{ return Time; }
         void setName(const string Name){
             this -> Name = Name;
-        }
-        void setGender(const string Gender){
-            this -> Gender = Gender;
         }
         void setID(const string ID){
             this -> ID = ID;
@@ -54,14 +39,14 @@ class Student{
         void setGoal(const string Goal){
             this -> Goal = Goal;
         }
-        void setTime(const string Time){
-            this -> Time = Time;
-        }
-        
 };
 class Matchingsystem {
     private:
         vector<Student> Students;
+        static const int MATCHING_THRESHOLD;
+        static const int SUBJECT_WEIGHT;
+        static const int LEVEL_WEIGHT;
+        static const int GOAL_WEIGHT;
     public:
 
 };

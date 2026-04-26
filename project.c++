@@ -4,7 +4,7 @@
 #include<iomanip>
 #include<vector>
 using namespace std;
-class Person{
+class Student{
     private:
         string Name;
         string Gender;
@@ -12,16 +12,18 @@ class Person{
         string Major;
         string Subject;
         string SubjLevel;
+        string SubjGoal;
         string Time;
         public:
-        Person (string Name, string Gender, string ID, string Major, string Subject, string SubjectLevel, string Time){
+        Student(string Name, string Gender, string ID, string Major, string Subject, string SubjectLevel, string SubjGoal, string Time){
             this -> Name = Name;
             this -> Gender = Gender;
             this -> ID = ID;
             this -> Major = Major;
-            this ->Subject = Subject;
-            this ->SubjLevel = SubjectLevel;
-            this ->Time = Time;
+            this -> Subject = Subject;
+            this -> SubjLevel = SubjectLevel;
+            this -> SubjGoal = SubjGoal;
+            this -> Time = Time;
         };
         string getName() const{ return Name; }
         string getGender() const{ return Gender; }
@@ -29,6 +31,7 @@ class Person{
         string getMajor() const{ return Major; }
         string getSubject() const{ return Subject; }
         string getSubjLevel() const{ return SubjLevel; }
+        string getSubjGoal() const{ return SubjGoal; }
         string getTime() const{ return Time; }
         void setName(const string Name){
             this -> Name = Name;
@@ -48,6 +51,9 @@ class Person{
         void setSubjLevel(const string SubjLevel){
             this -> SubjLevel = SubjLevel;
         }
+        void setSubjGoal(const string SubjGoal){
+            this -> SubjGoal = SubjGoal;
+        }
         void setTime(const string Time){
             this -> Time = Time;
         }
@@ -55,7 +61,7 @@ class Person{
 };
 class Matchingsystem {
     private:
-        vector<Person> student;
+        vector<Student> Students;
     public:
 };
 int main(){

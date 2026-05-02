@@ -15,7 +15,7 @@ class Student{
         string Email;
         public:
         Student(string Name, string MSSV, string Major, string Subject, string Level, string Character, string Email)
-        :Name(Name), MSSV(MSSV), Major(Major), Subject(Subject), Level(Level), Email(Email){};
+        :Name(Name), MSSV(MSSV), Major(Major), Subject(Subject), Level(Level), Character(Character), Email(Email){};
         string getName() const{ return Name; }
         string getMSSV() const{ return MSSV; }
         string getMajor() const{ return Major; }
@@ -103,13 +103,21 @@ class Matchingsystem {
         static int LEVEL_WEIGHT;
         static int CHARACTER_WEIGHT;
     public:
+    void ChoiceLevel(string& Level){
+        cout<<"Trình độ của bạn là A,B,C hay D? (A: Xuất sắc, B: Tốt, C: Trung bình, D: Yếu): ";
+        getline(cin,Level);
+    }
+    void ChoiceCharacter(string& Character){
+        cout<<"Tính cách của bạn là hướng ngoại hay hướng nội?: ";
+        getline(cin,Character);
+    }
     void themSV(const Student& s){
         if(Checkstudent(s.getMSSV())){
             cout<<"MSSV da ton tai!"<<endl;
             return;
         }
         Students.push_back(s);
-        MatchNhom(s);
+        //MatchNhom(s);
     }
     Student* timSVTheoMSSV(string mssv) {
     for (auto& s : Students) {
@@ -118,7 +126,27 @@ class Matchingsystem {
     return nullptr; 
 
 }
-void luuVaoFile() {
+void loadFile() {
+    ifstream inFile(FILENAME);
+    string line;
+    while (getline(inFile, line)) {
+        stringstream ss(line);
+        vector<string> data;
+        string temp;
+
+        while (getline(ss, temp, ',')) {
+            data.push_back(temp);
+        }
+
+        if (data.size() == 7) {
+            Students.push_back(Student(
+                data[0], data[1], data[2],
+                data[3], data[4], data[5], data[6]
+            ));
+        }
+    }
+}
+void SaveFile() {
     ofstream outFile(FILENAME); 
     if (!outFile) {
         cout << "Loi: Khong the mo file de luu!" << endl;
@@ -149,6 +177,7 @@ int Matchingsystem::CHARACTER_WEIGHT = 30;
 
 int main(){
     Matchingsystem ms;
+    ms.loadFile();
     int choice;
     do {
         cout<<"=====       =====  ========  =====     ==  ===     ==="<<endl;
@@ -178,16 +207,16 @@ int main(){
         cin >> choice;
     if (choice ==1){
             string name,mssv,major,subject,level,character,email;
-
-            cout<<"Ten: "; getline(cin,name);
+            cin.ignore();
+            cout<<"Ten: "; getline(cin,name); 
             cout<<"MSSV: "; getline(cin,mssv);
             cout<<"Nganh: "; getline(cin,major);
-            cout<<"Mon hoc:"; getline(cin,subject);
-            cout<<"Trinh do(A,B,C,D): "; getline(cin,level);
-            cout<<"Tinh Cach(huong ngoai hay huong noi): "; getline(cin,character);
+            cout<<"Mon hoc muon chon:"; getline(cin,subject);
+            ms.ChoiceLevel(level);
+            ms.ChoiceCharacter(character);
             cout<<"Email: "; getline(cin,email);
             ms.themSV(Student(name,mssv,major,subject,level,character,email));
-            ms.luuVaoFile();
+            ms.SaveFile();
            
         }
     else if(choice == 2){
@@ -219,16 +248,10 @@ int main(){
 
             cout << "Nhap email moi (De trong neu khong doi): "; 
             getline(cin, temp); if(!temp.empty()) sv->setEmail(temp);
-            ms.luuVaoFile();
+            ms.SaveFile();
 
-            cout << "Cap nhat thanh cong!"<<endl;
-    } else {
-        cout << "Khong tim thay sinh vien co MSSV: " << MSSV << endl;
-    };};
-    
-}
-           
+            cout << "Cap nhat thanh cong!"<<endl;}
+             else {
+            cout << "Khong tim thay sinh vien co MSSV: " << MSSV << endl;
+    }}} while (choice > 0 && choice < 8);}
         
-    while (choice !=1 && choice !=2 && choice !=3 && choice !=4 && choice !=5 && choice !=6);{
-        cout<<"Lua chon khong hop le,vui long chon lai!"<<endl;
-    };}

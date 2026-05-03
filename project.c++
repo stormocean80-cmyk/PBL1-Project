@@ -73,7 +73,7 @@ class Matchingsystem {
         return tong / group.size();
     }
         //MATCH 
-    void MatchNhom(const Student& s){
+    void MatchNhom(const Student& s, bool silent = false){
         int bestScore=-1, bestGroup=-1;
         for(int i=0;i<groups.size();i++){
             if(groups[i].size()>=MAX_GROUP_SIZE) continue;
@@ -83,12 +83,13 @@ class Matchingsystem {
                 bestGroup=i;}}
         if(bestScore>=MATCHING_THRESHOLD && bestGroup!=-1){
             groups[bestGroup].push_back(s);
-            cout<<"Match vao nhom "<<bestGroup+1<<endl;
+            if(!silent){
+            cout<<"Match vao nhom "<<bestGroup+1<<endl;}
         } else {
             groups.push_back({s});
-            cout<<"Tao nhom moi\n";
-        }
-    }
+            if(!silent){
+                cout<<"Tao nhom moi\n";
+            }}}
         static int MATCHING_THRESHOLD;
         static int MAX_GROUP_SIZE;
         static string FILENAME;
@@ -135,11 +136,37 @@ class Matchingsystem {
                 <<"|"<<setw(10)<<s.getLevel()
                 <<"|"<<setw(15)<<s.getCharacter()
                 <<"|"<<setw(25)<<s.getEmail()<<"|"<<endl;}}
+    //Danh sach nhom
+    void DanhsachNhom(){
+        cout<<left;
+        for(int i=0;i<groups.size();i++){
+            cout<<endl<<"=== NHOM "<<i+1<<" ===\n";
+            cout<<"+"<<"-------------------------------------------------------------------------------------------------------------------------";cout<<"+"<<endl;
+            cout<<"|"<<setw(15)<<"TEN"
+                <<"|"<<setw(10)<<"MSSV"
+                <<"|"<<setw(20)<<"NGANH"
+                <<"|"<<setw(20)<<"MON HOC DA CHON"
+                <<"|"<<setw(10)<<"TRINH DO"
+                <<"|"<<setw(15)<<"TINH CACH"
+                <<"|"<<setw(25)<<"EMAIL"<<"|"<<endl;
+            cout<<"+"<<"-------------------------------------------------------------------------------------------------------------------------";cout<<"+"<<endl;
+            for(auto s: groups[i]){
+                cout<<"|"<<setw(15)<<s.getName()
+                    <<"|"<<setw(10)<<s.getMSSV()
+                    <<"|"<<setw(20)<<s.getMajor()
+                    <<"|"<<setw(20)<<s.getSubject()
+                    <<"|"<<setw(10)<<s.getLevel()
+                    <<"|"<<setw(15)<<s.getCharacter()
+                    <<"|"<<setw(25)<<s.getEmail()<<"|"<<endl;
+            }
+            cout<<"+"<<"-------------------------------------------------------------------------------------------------------------------------";cout<<"+"<<endl;}}
+
     //tim sinh vien theo MSSV
     Student* timSVTheoMSSV(string mssv) {
     for (auto& s : Students) {
         if (s.getMSSV() == mssv) return &s;}
         return nullptr;}
+    
 
     void loadFile() {
         ifstream inFile(FILENAME);
@@ -153,7 +180,9 @@ class Matchingsystem {
         if (data.size() == 7) {
             Students.push_back(Student(
                 data[0], data[1], data[2],
-                data[3], data[4], data[5], data[6]));}}}
+                data[3], data[4], data[5], data[6]));}}
+        for(const auto& s : Students){
+            MatchNhom(s,true);}}
 
     void SaveFile() {
         ofstream outFile(FILENAME); 
@@ -261,6 +290,10 @@ int main(){
                 cout <<"Danh sach sinh vien:"<<endl;
                 ms.DanhsachSV();
             }
+        else if(choice == 4){
+            cout<<"DANH SACH CAC NHOM HIEN TAI:"<<endl;
+            ms.DanhsachNhom();}
+
         else  {cout << "Lua chon khong hop le, vui long chon lai." << endl;
                 ;}
 } while (choice !=7);}

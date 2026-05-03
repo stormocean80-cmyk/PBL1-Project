@@ -1,4 +1,5 @@
 Le Quang Thuy,106250297,Dien tu vien thong,Giai tich,A,huong ngoai,thuylequang@gmail.com
-Le Nhat Minh,106250296,dien tu vien thong,Vat Li,A,huong noi,stromocesn
-Le Minh Lam,1072882,fsdfsf,fsf,a,dad,dsdfds
+Le Nhat Minh,106250296,dien tu vien thong,Giai tich,A,huong ngoai,stromocean*0@gmail.com
+Le Minh Lam,1072882,xay dung,Vat li,C,huong ngoai,kkkkkk@gmail.com
 Le Nhat Lam,106250382,Dien Tu Vien Thong,Giai Tich,B,huong ngoai,stor
+Luu thi my kim,106250278,Dien tu vien thong,Giai tich,A,huong ngoai,mykim@gmail.com
